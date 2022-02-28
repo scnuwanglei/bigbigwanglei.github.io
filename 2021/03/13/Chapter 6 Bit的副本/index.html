@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="wanglei" />
+
+
+
+<meta name="description" content="1680. 连接连续二进制数字「Medium」给你一个整数 n ，请你将 1 到 n 的二进制表示连接起来，并返回连接结果对应的 十进制 数字对 10^9 + 7 取余的结果。 示例 1： 123输入：n &#x3D; 1输出：1解释：二进制的 &quot;1&quot; 对应着十进制的 1 。  示例 2： 1234输入：n &#x3D; 3输出：27解释：二进制下，1，2 和 3 分别对应 &quot;1&amp;quo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chapter 6 Bit">
+<meta property="og:url" content="http://example.com/2021/03/13/Chapter%206%20Bit%E7%9A%84%E5%89%AF%E6%9C%AC/index.html">
+<meta property="og:site_name" content="You got what you paid for.">
+<meta property="og:description" content="1680. 连接连续二进制数字「Medium」给你一个整数 n ，请你将 1 到 n 的二进制表示连接起来，并返回连接结果对应的 十进制 数字对 10^9 + 7 取余的结果。 示例 1： 123输入：n &#x3D; 1输出：1解释：二进制的 &quot;1&quot; 对应着十进制的 1 。  示例 2： 1234输入：n &#x3D; 3输出：27解释：二进制下，1，2 和 3 分别对应 &quot;1&amp;quo">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic.leetcode-cn.com/1611415418-aCzGJI-Picture2.png">
+<meta property="og:image" content="https://pic.leetcode-cn.com/1603022900-GNKGMP-Picture2.png">
+<meta property="og:image" content="https://pic.leetcode-cn.com/1603022900-qIFpAR-Picture4.png">
+<meta property="og:image" content="https://pic.leetcode-cn.com/1603022900-hnUxBz-Picture5.png">
+<meta property="og:image" content="https://pic.leetcode-cn.com/9716b1a1ead21824b8216c7d54910bee4d838c011581f4e3d82a14f71cb392a1-Picture1.png">
+<meta property="article:published_time" content="2021-03-13T02:51:59.199Z">
+<meta property="article:modified_time" content="2022-02-28T05:03:05.045Z">
+<meta property="article:author" content="wanglei">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.leetcode-cn.com/1611415418-aCzGJI-Picture2.png">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="You got what you paid for." type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Chapter 6 Bit | You got what you paid for.</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: 
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/"></a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>Menu</li>
+                        <li>Tags</li>
+                        
+                        <li>Friends</li>
+                        
+                        
+                        <li>About Me</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" target="_blank" rel="noopener" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" target="_blank" rel="noopener" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页"></a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页"></a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+</nav>
+      <div class="body-wrap"><article id="post-Chapter 6 Bit的副本" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2021/03/13/Chapter%206%20Bit%E7%9A%84%E5%89%AF%E6%9C%AC/" class="article-date">
+      <time datetime="2021-03-13T02:51:59.199Z" itemprop="datePublished">2021-03-13</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Chapter 6 Bit
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="1680-连接连续二进制数字「Medium」"><a href="#1680-连接连续二进制数字「Medium」" class="headerlink" title="1680. 连接连续二进制数字「Medium」"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/concatenation-of-consecutive-binary-numbers/">1680. 连接连续二进制数字「Medium」</a></h1><p>给你一个整数 <code>n</code> ，请你将 <code>1</code> 到 <code>n</code> 的二进制表示连接起来，并返回连接结果对应的 <strong>十进制</strong> 数字对 <code>10^9 + 7</code> 取余的结果。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：n = 1</span><br><span class="line">输出：1</span><br><span class="line">解释：二进制的 &quot;1&quot; 对应着十进制的 1 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：n = 3</span><br><span class="line">输出：27</span><br><span class="line">解释：二进制下，1，2 和 3 分别对应 &quot;1&quot; ，&quot;10&quot; 和 &quot;11&quot; 。</span><br><span class="line">将它们依次连接，我们得到 &quot;11011&quot; ，对应着十进制的 27 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：n = 12</span><br><span class="line">输出：505379714</span><br><span class="line">解释：连接结果为 &quot;1101110010111011110001001101010111100&quot; 。</span><br><span class="line">对应的十进制数字为 118505380540 。</span><br><span class="line">对 109 + 7 取余后，结果为 505379714 。</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>算法分析：</p>
+<p>由于我们需要将「十进制转换成二进制」「进行运算」「将结果转换回十进制」这三个步骤，因此我们不妨直接将整个问题在十进制的角度下进行考虑。</p>
+<p>假设我们当前处理到了数字 $i$，并且前面 $[1,i-1]$ 的二进制连接起来对应的<strong>十进制数</strong>为 $x$，那么我们如何将数字 $i$ 进行连接呢？</p>
+<p>观察二进制连接的过程，我们可以将这一步运算抽象为两个步骤：</p>
+<ol>
+<li>将之前 $[1,i-1]$ 的二进制数<strong>左移</strong>若干位，这个位数就是 $i$ 的二进制表示的位数；</li>
+<li>将 $i$ 通过<strong>加法运算</strong>与左移的结果进行相加。</li>
+</ol>
+<p>这样，我们可以得到 $x$ 的递推式：$x&#x3D;x\times2^{len(i)}+i$.</p>
+<p>我们可以知道 $len(i)$ 和 $len(i-1)$ 要么相等，要么相差 $1$.</p>
+<p>$x$ 是 $(100\cdots)_2$ 的形式存储，而 $x-1$ 是以 $(111\cdots)_2$ 的形式存在，所以当一个数 $x$ 为 $2$ 的倍数次的时候，那么它比 $x-1$ 多一位，因此&#x3D;&#x3D;当 <code>x &amp; (x - 1) == 0</code> 的时候，移位的位数就需要加 $1$&#x3D;&#x3D;，答案就显而易见了。</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">const</span> <span class="type">unsigned</span> <span class="type">int</span> mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">concatenatedBinary</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> times = <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> ((i &amp; (i - <span class="number">1</span>)) == <span class="number">0</span>) ++times;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; times; ++j) &#123;</span><br><span class="line">                ans &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">                ans %= mod;</span><br><span class="line">            &#125;</span><br><span class="line">            ans += i;</span><br><span class="line">            ans %= mod;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="剑指-Offer-56-I-数组中数字出现的次数「Medium」"><a href="#剑指-Offer-56-I-数组中数字出现的次数「Medium」" class="headerlink" title="剑指 Offer 56 - I. 数组中数字出现的次数「Medium」"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-lcof/">剑指 Offer 56 - I. 数组中数字出现的次数「Medium」</a></h1><p>一个整型数组 <code>nums</code> 里除两个数字之外，其他数字都出现了两次。请写程序找出这两个只出现一次的数字。要求时间复杂度是 $O(n)$，空间复杂度是 $O(1)$.</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [4,1,4,6]</span><br><span class="line">输出：[1,6] 或 [6,1]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>算法分析：</p>
+<p>设两个只出现一次的数字为 $x,y$，由于 $x≠y$，则 $x$ 和 $y$ 二进制至少有一位不同（即分别为 $0$ 和 $1$ ），根据此位可以将 $nums$ 拆分为分别包含 $x$ 和 $y$ 的两个子数组。</p>
+<p>易知两子数组都满足 「除一个数字之外，其他数字都出现了两次」。因此，仿照以上简化问题的思路，分别对两子数组遍历执行异或操作，即可得到两个只出现一次的数字 $x,y$.</p>
+<p>算法流程：</p>
+<ol>
+<li><p>遍历 $nums$ 执行异或：</p>
+<ul>
+<li>设整型数组 $nums&#x3D;[a,a,b,b\cdots,x,y]$，对 $nums$ 中所有数字进行异或，得到的结果为 $x\bigoplus y$.</li>
+</ul>
+</li>
+<li><p>循环左移计算 m:</p>
+<ul>
+<li><p>根据异或运算定义，若整数 $x\bigoplus y$ 某二进制位为 $1$，则 $x$ 和 $y$ 的此二进制位一定不同。换言之，找到  $x\bigoplus y$ 某位为 $1$ 的二进制位，即可将数组 $nums$ 拆分为上述的两个子数组。根据与运算特点，可知对于任意整数 $a$ 有：</p>
+<ul>
+<li>若 $a$ &amp; $0001&#x3D;1$，则 $a$ 的第一位为 $1$ ；</li>
+<li>若 $a$ &amp; $0010&#x3D;1$，则 $a$ 的第二位为 $1$ ；</li>
+<li>以此类推…</li>
+</ul>
+</li>
+<li><p>因此，初始化一个辅助变量 $m&#x3D;1$，通过与运算从右向左循环判断，可 <strong>获取整数</strong> $x\bigoplus y$ <strong>首位</strong> $1$，记录于 $m$ 中，代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(z &amp; m == <span class="number">0</span>) <span class="comment">// m 循环左移一位，直到 z &amp; m ！= 0</span></span><br><span class="line">    m &lt;&lt;= <span class="number">1</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>拆分</strong> $nums$ <strong>为两个子数组</strong>；</p>
+</li>
+<li><p><strong>分别遍历两个子数组执行异或</strong>；</p>
+<ul>
+<li>通过遍历判断 $nums$ 中各数字和 $m$ 做与运算的结果，可将数组拆分为两个子数组，并分别对两个子数组遍历求异或，则可得到两个只出现一次的数字</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://pic.leetcode-cn.com/1611415418-aCzGJI-Picture2.png" alt="picture"></p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">singleNumbers</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> x = <span class="number">0</span>, y = <span class="number">0</span>, n = <span class="number">0</span>, m = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> num : nums)         <span class="comment">// 1. 遍历异或</span></span><br><span class="line">            n ^= num;</span><br><span class="line">        <span class="keyword">while</span>((n &amp; m) == <span class="number">0</span>)         <span class="comment">// 2. 循环左移，计算 m</span></span><br><span class="line">            m &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> num : nums) &#123;       <span class="comment">// 3. 遍历 nums 分组</span></span><br><span class="line">            <span class="keyword">if</span>(num &amp; m) x ^= num;   <span class="comment">// 4. 当 num &amp; m != 0</span></span><br><span class="line">            <span class="keyword">else</span> y ^= num;          <span class="comment">// 4. 当 num &amp; m == 0</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> vector&lt;<span class="type">int</span>&gt; &#123;x, y&#125;;  <span class="comment">// 5. 返回出现一次的数字</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="剑指-Offer-56-II-数组中数字出现的次数-II「Medium」"><a href="#剑指-Offer-56-II-数组中数字出现的次数-II「Medium」" class="headerlink" title="剑指 Offer 56 - II. 数组中数字出现的次数 II「Medium」"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-ii-lcof/">剑指 Offer 56 - II. 数组中数字出现的次数 II「Medium」</a></h1><p>在一个数组 <code>nums</code> 中除一个数字只出现一次之外，其他数字都出现了三次。请找出那个只出现一次的数字。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [3,4,3,3]</span><br><span class="line">输出：4</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>算法分析：</p>
+<p>方法一：有限状态自动机</p>
+<p>各二进制位的 位运算规则相同 ，因此只需考虑一位即可。如下图所示，对于所有数字中的某二进制位 $1$ 的个数，存在 $3$ 种状态，即对 $3$ 余数为 $0, 1, 2$.</p>
+<ul>
+<li>若输入二进制位 $1$，则状态按照 $0\rightarrow1\rightarrow2\rightarrow0\rightarrow\cdots$ 顺序转换；</li>
+<li>若输入二进制位 $0$，则状态不变.</li>
+</ul>
+<p><img src="https://pic.leetcode-cn.com/1603022900-GNKGMP-Picture2.png" alt="picture"></p>
+<p>如下图所示，由于二进制只能表示 $0,1$，因此需要使用两个二进制位来表示 $3$ 个状态。设此两位分别为 $two,one$，则状态转换变为：$00\rightarrow01\rightarrow10\rightarrow00\rightarrow\cdots$ </p>
+<p>![image-20210304232713519](&#x2F;Users&#x2F;wanglei&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20210304232713519.png)</p>
+<p>接下来，需要通过<strong>状态转换表</strong>导出<strong>状态转换的计算公式</strong>。首先回忆一下位运算特点，对于任意二进制位 $x$，有：</p>
+<ul>
+<li>异或运算：<code>x ^ 0 = x</code> ， <code>x ^ 1 = ~x</code> </li>
+<li>与运算：<code>x &amp; 0 = 0</code> ， <code>x &amp; 1 = x</code></li>
+</ul>
+<p>&#x3D;&#x3D;计算 $one$ 方法&#x3D;&#x3D;：</p>
+<p>设当前状态为 $two,one$，此时输入二进制位 $n$。如下图所示，通过对状态表的情况拆分，可推出 $one$ 的计算方法为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> two == <span class="number">0</span>:</span><br><span class="line">  <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">    one = one</span><br><span class="line">  <span class="keyword">if</span> n == <span class="number">1</span>:</span><br><span class="line">    one = ~one</span><br><span class="line"><span class="keyword">if</span> two == <span class="number">1</span>:</span><br><span class="line">    one = <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p>引入 <strong>异或运算</strong> ，可将以上拆分简化为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> two == <span class="number">0</span>:</span><br><span class="line">    one = one ^ n</span><br><span class="line"><span class="keyword">if</span> two == <span class="number">1</span>:</span><br><span class="line">    one = <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p>引入 <strong>与运算</strong> ，可继续简化为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">one = one ^ n &amp; ~two</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic.leetcode-cn.com/1603022900-qIFpAR-Picture4.png" alt="p"></p>
+<p>&#x3D;&#x3D;计算 $two$ 方法&#x3D;&#x3D;：</p>
+<p>由于是先计算 $one$ ，因此应在新 $one$ 的基础上计算 $two$.</p>
+<p>如下图所示，修改为新 $one$ 后，得到了新的状态图。观察发现，可以使用同样的方法计算 $two$，即：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">two = two ^ n &amp; ~one</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic.leetcode-cn.com/1603022900-hnUxBz-Picture5.png" alt="picture"></p>
+<p>**&#x3D;&#x3D;返回值&#x3D;&#x3D;**：</p>
+<p>以上是对数字的二进制中 “一位” 的分析，而 <code>int</code> 类型的其他 $31$ 位具有相同的运算规则，因此可将以上公式直接套用在 $32$ 位数上。</p>
+<p>遍历完所有数字后，各二进制位都处于状态 $00$ 和状态 $01$ ( 取决于 “只出现一次的数字” 的各二进制位是 $0$ 还是 $1$ )，而此两状态是由 $one$ 来记录的 ( 此两状态下 $twos$ 恒为 $0$ )，因此返回 $ones$ 即可.</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">singleNumber</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> ones = <span class="number">0</span>, twos = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> &amp;num : nums)&#123;</span><br><span class="line">            ones = ones ^ num &amp; ~twos;</span><br><span class="line">            twos = twos ^ num &amp; ~ones;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ones;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="剑指-Offer-65-不用加减乘除做加法「Easy」"><a href="#剑指-Offer-65-不用加减乘除做加法「Easy」" class="headerlink" title="剑指 Offer 65. 不用加减乘除做加法「Easy」"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/bu-yong-jia-jian-cheng-chu-zuo-jia-fa-lcof/">剑指 Offer 65. 不用加减乘除做加法「Easy」</a></h1><p>写一个函数，求两个整数之和，要求在函数体内不得使用 “+”、“-”、“*”、“&#x2F;” 四则运算符号。</p>
+<p><strong>示例:</strong></p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: a = 1, b = 1</span><br><span class="line">输出: 2</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>a</code>, <code>b</code> 均可能是负数或 $0$</li>
+<li>结果不会溢出 $32$ 位整数</li>
+</ul>
+<blockquote>
+<p>算法分析：</p>
+<p>设两数字的二进制形式 $a,b$，求其和 $s&#x3D;a+b$，每一位的计算分为以下四种情况：</p>
+<p>![image-20210305222249494](&#x2F;Users&#x2F;wanglei&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20210305222249494.png)</p>
+<p>观察发现，<strong>无进位和</strong> 与 <strong>异或运算</strong> 规律相同，<strong>进位</strong> 和 <strong>与运算</strong> 规律相同 ( 并需左移一位 ) 。因此，无进位和 $n$ 与进位 $c$ 的计算公式如下：<br>$$<br>\left{<br>\begin{aligned}<br>&amp;n&#x3D;a\bigoplus b &amp; 非进位和：异或运算\<br>&amp;c&#x3D;a<del>&amp;</del>b~&lt;&lt;1 &amp; 进位：与运算+左移一位\<br>\end{aligned}<br>\right.<br>$$<br>和 ( $s$ ）&#x3D;（非进位和 $n$ ）+（进位 $c$ ）。即可将 $s&#x3D;a+b$ 转化为：$s&#x3D;a+b\Rightarrow s&#x3D;n+c$.</p>
+<p>循环求 $n$ 和 $c$，直至进位 $c&#x3D;0$；此时 $s&#x3D;n$，返回 $n$ 即可.</p>
+<p><img src="https://pic.leetcode-cn.com/9716b1a1ead21824b8216c7d54910bee4d838c011581f4e3d82a14f71cb392a1-Picture1.png" alt="picture"></p>
+</blockquote>
+<blockquote>
+<p>Q ： 若数字 $a$ 和 $b$ 中有负数，则变成了减法，如何处理？<br>A ： 在计算机系统中，数值一律用 补码 来表示和存储。补码的优势： 加法、减法可以统一处理（CPU只有加法器）。因此，以上方法 同时适用于正数和负数的加法 。</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (b != <span class="number">0</span>) &#123; <span class="comment">// 当进位为 0 时跳出</span></span><br><span class="line">            <span class="type">int</span> c = (<span class="type">unsigned</span> <span class="type">int</span>)(a &amp; b) &lt;&lt; <span class="number">1</span>;  <span class="comment">// c = 进位</span></span><br><span class="line">            a ^= b; <span class="comment">// a = 非进位和</span></span><br><span class="line">            b = c; <span class="comment">// b = 进位</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>Title:</span><a href="/2021/03/13/Chapter%206%20Bit%E7%9A%84%E5%89%AF%E6%9C%AC/">Chapter 6 Bit</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage"></a></p>
+        <p><span>Created:</span>2021-03-13, 10:51:59</p>
+        <p><span>Updated:</span>2022-02-28, 13:03:05</p>
+        <p>
+            <span>Full URL:</span><a class="post-url" href="/2021/03/13/Chapter%206%20Bit%E7%9A%84%E5%89%AF%E6%9C%AC/" title="Chapter 6 Bit">http://example.com/2021/03/13/Chapter%206%20Bit%E7%9A%84%E5%89%AF%E6%9C%AC/</a>
+            <span class="copy-path" data-clipboard-text="From http://example.com/2021/03/13/Chapter%206%20Bit%E7%9A%84%E5%89%AF%E6%9C%AC/　　By " title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2021/03/13/Chapter%20End%20Trivial%20Knowledge%E7%9A%84%E5%89%AF%E6%9C%AC/">
+                    Chapter End Trivial Knowledge
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2021/03/13/Chapter%205%20Tree%E7%9A%84%E5%89%AF%E6%9C%AC/">
+                    Chapter 5 Tree
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1680-%E8%BF%9E%E6%8E%A5%E8%BF%9E%E7%BB%AD%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%95%B0%E5%AD%97%E3%80%8CMedium%E3%80%8D"><span class="toc-number">1.</span> <span class="toc-text">1680. 连接连续二进制数字「Medium」</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%91%E6%8C%87-Offer-56-I-%E6%95%B0%E7%BB%84%E4%B8%AD%E6%95%B0%E5%AD%97%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0%E3%80%8CMedium%E3%80%8D"><span class="toc-number">2.</span> <span class="toc-text">剑指 Offer 56 - I. 数组中数字出现的次数「Medium」</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%91%E6%8C%87-Offer-56-II-%E6%95%B0%E7%BB%84%E4%B8%AD%E6%95%B0%E5%AD%97%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0-II%E3%80%8CMedium%E3%80%8D"><span class="toc-number">3.</span> <span class="toc-text">剑指 Offer 56 - II. 数组中数字出现的次数 II「Medium」</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%91%E6%8C%87-Offer-65-%E4%B8%8D%E7%94%A8%E5%8A%A0%E5%87%8F%E4%B9%98%E9%99%A4%E5%81%9A%E5%8A%A0%E6%B3%95%E3%80%8CEasy%E3%80%8D"><span class="toc-number">4.</span> <span class="toc-text">剑指 Offer 65. 不用加减乘除做加法「Easy」</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">5.</span> <span class="toc-text"></span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+
+    <script>
+        yiliaConfig.toc = ["Hide", "Show", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Chapter 6 Bit　| You got what you paid for.　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2021/03/13/Chapter%20End%20Trivial%20Knowledge%E7%9A%84%E5%89%AF%E6%9C%AC/" title="Pre: Chapter End Trivial Knowledge">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2021/03/13/Chapter%205%20Tree%E7%9A%84%E5%89%AF%E6%9C%AC/" title="Next: Chapter 5 Tree">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2022/02/28/%E4%BD%BF%E7%94%A8%20Hexo%20%E9%83%A8%E7%BD%B2%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">使用 Hexo 部署个人博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/04/07/Chapter%208%20Binary%20Search%E7%9A%84%E5%89%AF%E6%9C%AC/">Chapter 8 Binary Search</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/16/Chapter%207%20Backtrack%E7%9A%84%E5%89%AF%E6%9C%AC/">Chapter 7 Backtrack</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/13/Chapter%20End%20Trivial%20Knowledge%E7%9A%84%E5%89%AF%E6%9C%AC/">Chapter End Trivial Knowledge</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/13/Chapter%206%20Bit%E7%9A%84%E5%89%AF%E6%9C%AC/">Chapter 6 Bit</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/13/Chapter%205%20Tree%E7%9A%84%E5%89%AF%E6%9C%AC/">Chapter 5 Tree</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/13/Chapter%204%20Greedy%E7%9A%84%E5%89%AF%E6%9C%AC/">Chapter 4 Greedy</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/13/Chapter%203%20Stack%E7%9A%84%E5%89%AF%E6%9C%AC/">Chapter 3 Stack</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/13/Chapter%202%20Dynamic%20Programming/">Chapter 2 Dynamic Programming</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/13/Chapter%201%20Sliding%20Window/">Chapter 1 Sliding Window</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2022 wanglei
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="Site Visitors"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="Page Hits"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

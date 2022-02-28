@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="wanglei" />
+
+
+
+<meta name="description" content="84. 柱状图中最大的矩形「Hard」给定 n 个非负整数，用来表示柱状图中各个柱子的高度。每个柱子彼此相邻，且宽度为 1 。 求在该柱状图中，能够勾勒出来的矩形的最大面积。  以上是柱状图的示例，其中每个柱子的宽度为 1，给定的高度为 [2,1,5,6,2,3]。  图中阴影部分为所能勾勒出的最大矩形面积，其面积为 10 个单位。 示例: 12输入: [2,1,5,6,2,3]输出: 10">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chapter 3 Stack">
+<meta property="og:url" content="http://example.com/2021/03/13/Chapter%203%20Stack%E7%9A%84%E5%89%AF%E6%9C%AC/index.html">
+<meta property="og:site_name" content="You got what you paid for.">
+<meta property="og:description" content="84. 柱状图中最大的矩形「Hard」给定 n 个非负整数，用来表示柱状图中各个柱子的高度。每个柱子彼此相邻，且宽度为 1 。 求在该柱状图中，能够勾勒出来的矩形的最大面积。  以上是柱状图的示例，其中每个柱子的宽度为 1，给定的高度为 [2,1,5,6,2,3]。  图中阴影部分为所能勾勒出的最大矩形面积，其面积为 10 个单位。 示例: 12输入: [2,1,5,6,2,3]输出: 10">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/10/12/histogram.png">
+<meta property="og:image" content="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/10/12/histogram_area.png">
+<meta property="og:image" content="https://assets.leetcode-cn.com/solution-static/331/1.png">
+<meta property="article:published_time" content="2021-03-13T02:48:58.886Z">
+<meta property="article:modified_time" content="2022-02-28T05:02:14.009Z">
+<meta property="article:author" content="wanglei">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/10/12/histogram.png">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="You got what you paid for." type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Chapter 3 Stack | You got what you paid for.</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: 
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/"></a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>Menu</li>
+                        <li>Tags</li>
+                        
+                        <li>Friends</li>
+                        
+                        
+                        <li>About Me</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" target="_blank" rel="noopener" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" target="_blank" rel="noopener" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" target="_blank" rel="noopener" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页"></a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页"></a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+</nav>
+      <div class="body-wrap"><article id="post-Chapter 3 Stack的副本" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2021/03/13/Chapter%203%20Stack%E7%9A%84%E5%89%AF%E6%9C%AC/" class="article-date">
+      <time datetime="2021-03-13T02:48:58.886Z" itemprop="datePublished">2021-03-13</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Chapter 3 Stack
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="84-柱状图中最大的矩形「Hard」"><a href="#84-柱状图中最大的矩形「Hard」" class="headerlink" title="84. 柱状图中最大的矩形「Hard」"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/largest-rectangle-in-histogram/">84. 柱状图中最大的矩形「Hard」</a></h1><p>给定 <code>n</code> 个非负整数，用来表示柱状图中各个柱子的高度。每个柱子彼此相邻，且宽度为 <code>1</code> 。</p>
+<p>求在该柱状图中，能够勾勒出来的矩形的最大面积。</p>
+<p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/10/12/histogram.png" alt="picture"></p>
+<p>以上是柱状图的示例，其中每个柱子的宽度为 1，给定的高度为 <code>[2,1,5,6,2,3]</code>。</p>
+<p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/10/12/histogram_area.png" alt="pictture"></p>
+<p>图中阴影部分为所能勾勒出的最大矩形面积，其面积为 <code>10</code> 个单位。</p>
+<p><strong>示例:</strong></p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [2,1,5,6,2,3]</span><br><span class="line">输出: 10</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>算法分析：</p>
+<p>枚举「宽」的暴力法这里就不再过多赘述了。</p>
+<p>&#x3D;&#x3D;算法引入&#x3D;&#x3D;：</p>
+<p>我们对枚举「高」来做一些分析以及优化。</p>
+<p>对枚举「高」的暴力法就是对每一条「高」进行中心扩展：</p>
+<ul>
+<li>首先我们枚举某一根柱子 $i$ 作为高 $h&#x3D;height[i]$.</li>
+<li>随后我们需要进行向左右两边扩展，使得扩展到的柱子的高度均不小于 $h$，也就是说，我们需要找到<strong>左右两侧最近的高度小于 $h$ 的柱子</strong>，这两根柱子之间的所有柱子的高度均不小于 $h$，这就是 $i$ 能扩展的最远范围.</li>
+</ul>
+<p>对于上述分析我们可知，我们可以使用<strong>单调栈</strong>来维护左边和右边的高度依赖关系。由分析可知，我们需要查找的是距离 $i$ 最近比 $h$ 低的柱子，所以我们可以维护一个单调递增的栈，每次只需要查找对比栈顶元素与当前的柱子高度，进行 $pop$ 操作和 $push$ 操作即可。</p>
+<p>&#x3D;&#x3D;单调栈的算法如下&#x3D;&#x3D;：</p>
+<ul>
+<li>当我们枚举到第 $i$ 根柱子时，我们从栈顶不断移除 $height[j]&gt;height[i]$ 的 $j$ 值。在移除完毕后，栈顶元素的 $j$ 值就一定满足 $height[j]&lt;height[i]$，此时 $j$ 就是 $i$ 左侧且最近的小于其高度的柱子。</li>
+<li>这里会有一种特殊情况。如果我们移除了栈中所有的 $j$ 值，说明 $i$ 左侧所有柱子的高度都大于 $height[i]$，那么我们可以认为 $i$ 左侧且最近的小于其高度的柱子在位置 $j&#x3D;-1$，它是一根「虚拟」的、高度无限低的柱子。这样的定义不会对我们的答案产生任何的影响，我们也称这根「虚拟」的柱子为「哨兵」。</li>
+<li>最后我们将 $i$ 这根柱子入栈。</li>
+</ul>
+<p>Details：</p>
+<p>我们在栈中存放的是柱子的下标而非柱子高度。</p>
+<p>最后求面积为 <code>maxArea = max(maxArea, (right[i] - left[i] - 1) * heights[i])</code>，具体下标的长度需要注意。</p>
+<p>本题还能进行常数优化 $\Rightarrow$ 一次遍历，这里就不提了</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">largestRectangleArea</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; heights)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> maxArea = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> n = (<span class="type">int</span>)heights.<span class="built_in">size</span>();</span><br><span class="line">        stack&lt;<span class="type">int</span>&gt; min_stack;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">left</span><span class="params">(n)</span>, <span class="title">right</span><span class="params">(n)</span></span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            <span class="keyword">while</span> (!min_stack.<span class="built_in">empty</span>() <span class="keyword">and</span> heights[i] &lt;= heights[min_stack.<span class="built_in">top</span>()]) &#123;</span><br><span class="line">                min_stack.<span class="built_in">pop</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            left[i] = min_stack.<span class="built_in">empty</span>() ? <span class="number">-1</span> : min_stack.<span class="built_in">top</span>();</span><br><span class="line">            min_stack.<span class="built_in">push</span>(i);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        min_stack = <span class="built_in">stack</span>&lt;<span class="type">int</span>&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">            <span class="keyword">while</span> (!min_stack.<span class="built_in">empty</span>() <span class="keyword">and</span> heights[i] &lt;= heights[min_stack.<span class="built_in">top</span>()]) &#123;</span><br><span class="line">                min_stack.<span class="built_in">pop</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            right[i] = min_stack.<span class="built_in">empty</span>() ? n : min_stack.<span class="built_in">top</span>();</span><br><span class="line">            min_stack.<span class="built_in">push</span>(i);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            maxArea = <span class="built_in">max</span>(maxArea, (right[i] - left[i] - <span class="number">1</span>) * heights[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> maxArea;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="503-下一个更大元素-II「Medium」"><a href="#503-下一个更大元素-II「Medium」" class="headerlink" title="503. 下一个更大元素 II「Medium」"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/next-greater-element-ii/">503. 下一个更大元素 II「Medium」</a></h1><p>给定一个循环数组（最后一个元素的下一个元素是数组的第一个元素），输出每个元素的下一个更大元素。数字 $x$ 的下一个更大的元素是按数组遍历顺序，这个数字之后的第一个比它更大的数，这意味着你应该循环地搜索它的下一个更大的数。如果不存在，则输出 $-1$.</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入: [1,2,1]</span><br><span class="line">输出: [2,-1,2]</span><br><span class="line">解释: 第一个 1 的下一个更大的数是 2；</span><br><span class="line">数字 2 找不到下一个更大的数； </span><br><span class="line">第二个 1 的下一个最大的数需要循环搜索，结果也是 2。</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>算法分析：</p>
+<p>我们可以使用单调栈解决本题。单调栈中保存的是下标，从栈底到栈顶的下标在数组 $nums$ 中对应的值是单调不升的。</p>
+<p>每次我们移动到数组中的一个新的位置 $i$，我们就将当前单调栈中所有对应值小于 $nums[i]$ 的下标弹出单调栈，这些值的下一个更大元素即为 $nums[i]$，随后我们将位置 $i$ 入栈.</p>
+<p>但是注意到只遍历一次序列是不够的，例如序列 $[2,3,1]$，最后单调栈中将剩余 $[3,1]$，其中元素 $[1]$ 的下一个更大元素还是不知道的</p>
+<p>一个朴素的思想是，我们可以把这个循环数组「拉直」，即复制该序列的前 $n-1$ 个元素拼接在原序列的后面。这样我们就可以将这个新序列当作普通序列，用上文的方法来处理。</p>
+<p>而在本题中，我们不需要显性地将该循环数组「拉直」，而只需要在处理时对下标取模即可。</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">nextGreaterElements</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">ret</span><span class="params">(n, <span class="number">-1</span>)</span></span>;</span><br><span class="line">        stack&lt;<span class="type">int</span>&gt; stk;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n * <span class="number">2</span> - <span class="number">1</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">while</span> (!stk.<span class="built_in">empty</span>() &amp;&amp; nums[stk.<span class="built_in">top</span>()] &lt; nums[i % n]) &#123;</span><br><span class="line">                ret[stk.<span class="built_in">top</span>()] = nums[i % n];</span><br><span class="line">                stk.<span class="built_in">pop</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            stk.<span class="built_in">push</span>(i % n);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="224-基本计算器"><a href="#224-基本计算器" class="headerlink" title="224. 基本计算器"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/basic-calculator/%E3%80%8CHard%E3%80%8D">224. 基本计算器</a></h1><p>实现一个基本的计算器来计算一个简单的字符串表达式 <code>s</code> 的值。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;(1+(4+5+2)-3)+(6+8)&quot;</span><br><span class="line">输出：23</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= s.length &lt;= 3 * 105</code></li>
+<li><code>s</code> 由数字、<code>&#39;+&#39;</code>、<code>&#39;-&#39;</code>、<code>&#39;(&#39;</code>、<code>&#39;)&#39;</code>、和 <code>&#39; &#39;</code> 组成</li>
+<li><code>s</code> 表示一个有效的表达式</li>
+</ul>
+<blockquote>
+<p>算法分析：</p>
+<p>方法：括号展开 + 栈</p>
+<p>由于字符串除了数字与括号外，只有加号和减号两种运算符。因此，如果展开表达式中所有的括号，则得到的新表达式中，数字本身不会发生变化，只是每个数字前面的符号会发生变化。</p>
+<p>因此，我们考虑使用一个取值为 {-1, 1} 的整数 $sign$ 代表「当前」的符号。根据括号表达式的性质，它的取值：</p>
+<ul>
+<li>与字符串中当前位置的运算符有关；</li>
+<li>如果当前位置处于一系列括号之内，则也与这些括号前面的运算符有关：每当遇到一个以 -− 号开头的括号，则意味着此后的符号都要被「翻转」。</li>
+</ul>
+<p>考虑到第二点，我们需要维护一个栈 $ops$，其中栈顶元素记录了当前位置所处的每个括号所「共同形成」的符号。例如，对于字符串 $1+2+(3-(4+5))$：</p>
+<ul>
+<li>扫描到 $1+2$ 时，由于当前位置没有被任何括号所包含，则栈顶元素为初始值 $+1$.</li>
+<li>扫描到 $1+2+(3$ 时，当前位置被一个括号所包含，该括号前面的符号为 $+$ 号，因此栈顶元素依然 $+1$.</li>
+<li>扫描到 $1+2+(3-(4$ 时，当前位置被两个括号所包含，分别对应着 $+$ 号和 $-$ 号，由于 $+$ 号和 $-$ 号合并的结果为 $-$ 号，因此栈顶元素变为 $-1$.</li>
+</ul>
+<p>​    在得到栈 $ops$ 之后，$sign$ 的取值就能够确定了：&#x3D;&#x3D;如果当前遇到了 $+$ 号，则更新 $sign\leftarrow ops.top()$ ；如果遇到了遇到了 $-$ 号，则更新 $sign\leftarrow -ops.top()$&#x3D;&#x3D;.</p>
+<p>然后，每当遇到 $($ 时，都要将当前的 $sign$ 取值压入栈中；每当遇到 $)$ 时，都从栈中弹出一个元素。这样，我们能够在扫描字符串的时候，即时地更新 $ops$ 中的元素.</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">calculate</span><span class="params">(s <span class="type">string</span>)</span></span> <span class="type">int</span> &#123;</span><br><span class="line">	n := <span class="built_in">len</span>(s)</span><br><span class="line">	ans := <span class="number">0</span></span><br><span class="line">	ops := []<span class="type">int</span>&#123;<span class="number">1</span>&#125;</span><br><span class="line">	sign := <span class="number">1</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; n; &#123;</span><br><span class="line">		<span class="keyword">switch</span> s[i] &#123;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">&#x27; &#x27;</span>:</span><br><span class="line">			i++</span><br><span class="line">		<span class="keyword">case</span> <span class="string">&#x27;-&#x27;</span>:</span><br><span class="line">			sign = -ops[<span class="built_in">len</span>(ops)<span class="number">-1</span>]</span><br><span class="line">			i++</span><br><span class="line">		<span class="keyword">case</span> <span class="string">&#x27;+&#x27;</span>:</span><br><span class="line">			sign = ops[<span class="built_in">len</span>(ops)<span class="number">-1</span>]</span><br><span class="line">			i++</span><br><span class="line">		<span class="keyword">case</span> <span class="string">&#x27;(&#x27;</span>:</span><br><span class="line">			ops = <span class="built_in">append</span>(ops, sign)</span><br><span class="line">			i++</span><br><span class="line">		<span class="keyword">case</span> <span class="string">&#x27;)&#x27;</span>:</span><br><span class="line">			ops = ops[:<span class="built_in">len</span>(ops)<span class="number">-1</span>]</span><br><span class="line">			i++</span><br><span class="line">		<span class="keyword">default</span>:</span><br><span class="line">			num := <span class="number">0</span></span><br><span class="line">			<span class="keyword">for</span> ; i &lt; n &amp;&amp; <span class="string">&#x27;0&#x27;</span> &lt;= s[i] &amp;&amp; s[i] &lt;= <span class="string">&#x27;9&#x27;</span>; i++ &#123;</span><br><span class="line">				num = num*<span class="number">10</span> + (<span class="type">int</span>)(s[i]-<span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">			&#125;</span><br><span class="line">			ans += sign * num</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="331-验证二叉树的前序序列化「Medium」"><a href="#331-验证二叉树的前序序列化「Medium」" class="headerlink" title="331. 验证二叉树的前序序列化「Medium」"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/verify-preorder-serialization-of-a-binary-tree/">331. 验证二叉树的前序序列化「Medium」</a></h1><p>序列化二叉树的一种方法是使用前序遍历。当我们遇到一个非空节点时，我们可以记录下这个节点的值。如果它是一个空节点，我们可以使用一个标记值记录，例如 <code>#</code>。</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">     <span class="built_in">_</span>9<span class="built_in">_</span></span><br><span class="line">    /   <span class="keyword">\</span></span><br><span class="line"><span class="keyword"></span>   3     2</span><br><span class="line">  / <span class="keyword">\ </span>  / <span class="keyword">\</span></span><br><span class="line"><span class="keyword"></span> 4   1  <span class="params">#</span>  6</span><br><span class="line">/ <span class="keyword">\ </span>/ <span class="keyword">\ </span>  / <span class="keyword">\</span></span><br><span class="line"><span class="keyword"></span><span class="params">#</span> <span class="params">#</span> <span class="params">#</span> <span class="params">#</span>   <span class="params">#</span> <span class="params">#</span></span><br></pre></td></tr></table></figure>
+
+<p>例如，上面的二叉树可以被序列化为字符串 <code>&quot;9,3,4,#,#,1,#,#,2,#,6,#,#&quot;</code>，其中 <code>#</code> 代表一个空节点。</p>
+<p>给定一串以逗号分隔的序列，验证它是否是正确的二叉树的前序序列化。编写一个在不重构树的条件下的可行算法。</p>
+<p>每个以逗号分隔的字符或为一个整数或为一个表示 <code>null</code> 指针的 <code>&#39;#&#39;</code> 。</p>
+<p>你可以认为输入格式总是有效的，例如它永远不会包含两个连续的逗号，比如 <code>&quot;1,,3&quot;</code> 。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: &quot;9,3,4,<span class="params">#</span>,<span class="params">#</span>,1,<span class="params">#</span>,<span class="params">#</span>,2,<span class="params">#</span>,6,<span class="params">#</span>,<span class="params">#</span>&quot;</span><br><span class="line">输出: true</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: &quot;1,<span class="params">#</span>&quot;</span><br><span class="line">输出: false</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>算法分析：</p>
+<p>&#x3D;&#x3D;方法一：栈&#x3D;&#x3D;<br>我们可以定义一个概念，叫做槽位。一个槽位可以被看作「当前二叉树中正在等待被节点填充」的那些位置。</p>
+<p>二叉树的建立也伴随着槽位数量的变化。每当遇到一个节点时：</p>
+<p>如果遇到了空节点，则要消耗一个槽位；</p>
+<p>如果遇到了非空节点，则除了消耗一个槽位外，还要再补充两个槽位。</p>
+<p>此外，还需要将根节点作为特殊情况处理。</p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/331/1.png" alt="p"></p>
+<p>我们使用栈来维护槽位的变化。栈中的每个元素，代表了对应节点处<strong>剩余槽位的数量</strong>，而栈顶元素就对应着下一步可用的槽位数量。当遇到空节点时，仅将栈顶元素减 $1$；当遇到非空节点时，将栈顶元素减 $1$ 后，再向栈中压入一个 $2$。无论何时，如果栈顶元素变为 $0$，就立刻将栈顶弹出。 </p>
+<p>历结束后，若栈为空，说明没有待填充的槽位，因此是一个合法序列；否则若栈不为空，则序列不合法。此外，在遍历的过程中，若槽位数量不足，则序列不合法。</p>
+<ul>
+<li>时间复杂度：$O(n)$.</li>
+<li>空间复杂度：$O(n)$.</li>
+</ul>
+<p>&#x3D;&#x3D;方法二：计数&#x3D;&#x3D;</p>
+<p>回顾方法一的逻辑，如果把栈中元素看成一个整体，即所有剩余槽位的数量，也能维护槽位的变化。</p>
+<p>因此，我们可以只维护一个计数器，代表栈中所有元素之和，其余的操作逻辑均可以保持不变</p>
+<ul>
+<li>时间复杂度：$O(n)$.</li>
+<li>空间复杂度：$O(1)$.</li>
+</ul>
+</blockquote>
+<p>方法一：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">isValidSerialization</span><span class="params">(preorder <span class="type">string</span>)</span></span> <span class="type">bool</span> &#123;</span><br><span class="line">    n := <span class="built_in">len</span>(preorder)</span><br><span class="line">    stk := []<span class="type">int</span>&#123;<span class="number">1</span>&#125;</span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; n; &#123;</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(stk) == <span class="number">0</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> preorder[i] == <span class="string">&#x27;,&#x27;</span> &#123;</span><br><span class="line">            i++</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> preorder[i] == <span class="string">&#x27;#&#x27;</span> &#123;</span><br><span class="line">            stk[<span class="built_in">len</span>(stk)<span class="number">-1</span>]--</span><br><span class="line">            <span class="keyword">if</span> stk[<span class="built_in">len</span>(stk)<span class="number">-1</span>] == <span class="number">0</span> &#123;</span><br><span class="line">                stk = stk[:<span class="built_in">len</span>(stk)<span class="number">-1</span>]</span><br><span class="line">            &#125;</span><br><span class="line">            i++</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 读一个数字</span></span><br><span class="line">            <span class="keyword">for</span> i &lt; n &amp;&amp; preorder[i] != <span class="string">&#x27;,&#x27;</span> &#123;</span><br><span class="line">                i++</span><br><span class="line">            &#125;</span><br><span class="line">            stk[<span class="built_in">len</span>(stk)<span class="number">-1</span>]--</span><br><span class="line">            <span class="keyword">if</span> stk[<span class="built_in">len</span>(stk)<span class="number">-1</span>] == <span class="number">0</span> &#123;</span><br><span class="line">                stk = stk[:<span class="built_in">len</span>(stk)<span class="number">-1</span>]</span><br><span class="line">            &#125;</span><br><span class="line">            stk = <span class="built_in">append</span>(stk, <span class="number">2</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">len</span>(stk) == <span class="number">0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>方法二：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">isValidSerialization</span><span class="params">(preorder <span class="type">string</span>)</span></span> <span class="type">bool</span> &#123;</span><br><span class="line">    n := <span class="built_in">len</span>(preorder)</span><br><span class="line">    slots := <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; n; &#123;</span><br><span class="line">        <span class="keyword">if</span> slots == <span class="number">0</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> preorder[i] == <span class="string">&#x27;,&#x27;</span> &#123;</span><br><span class="line">            i++</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> preorder[i] == <span class="string">&#x27;#&#x27;</span> &#123;</span><br><span class="line">            slots--</span><br><span class="line">            i++</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 读一个数字</span></span><br><span class="line">            <span class="keyword">for</span> i &lt; n &amp;&amp; preorder[i] != <span class="string">&#x27;,&#x27;</span> &#123;</span><br><span class="line">                i++</span><br><span class="line">            &#125;</span><br><span class="line">            slots++ <span class="comment">// slots = slots - 1 + 2</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> slots == <span class="number">0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="456-132-模式「Medium」"><a href="#456-132-模式「Medium」" class="headerlink" title="456. 132 模式「Medium」"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/132-pattern/">456. 132 模式「Medium」</a></h1><p>给你一个整数数组 <code>nums</code> ，数组中共有 <code>n</code> 个整数。</p>
+<p><strong>132 模式的子序列</strong> 由三个整数 <code>nums[i], nums[j]</code> 和 <code>nums[k]</code> 组成</p>
+<p>并同时满足：<code>i &lt; j &lt; k</code> 和 <code>nums[i] &lt; nums[k] &lt; nums[j]</code></p>
+<p>如果 <code>nums</code> 中存在 <strong>132 模式的子序列</strong> ，返回 <code>true</code> ；否则，返回 <code>false</code> </p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [1,2,3,4]</span><br><span class="line">输出：false</span><br><span class="line">解释：序列中不存在 132 模式的子序列。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [3,1,4,2]</span><br><span class="line">输出：true</span><br><span class="line">解释：序列中有 1 个 132 模式的子序列： [1, 4, 2] 。</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>算法分析：</p>
+<p>我们首先可以考虑枚举 <code>132</code> 模式中的 <code>3</code></p>
+<ul>
+<li><p>由于 <code>1</code> 是模式中的最小值，因此我们在枚举 <code>j</code> 的同时，维护数组 <code>num[0, j - 1]</code> 中的最小值，因为只有 <code>a[i] &lt; a[j]</code> 时，我们才可以选择 <code>a[i]</code> 作为 <code>1</code>.</p>
+</li>
+<li><p>由于 <code>2</code> 是模式中的次小值，因此我们可以使用一个有序集合（例如平衡树）维护数组中右侧元素</p>
+<p> <code>nums[j + 1, n - 1]</code> 中的所有值。当我们确定了 <code>a[i]</code> 和 <code>a[j]</code> 时，我们就可以在有序集合中查询严格比 <code>a[i]</code> 大的那个最小元素，即为 <code>a[k]</code>.</p>
+</li>
+</ul>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">find132pattern</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span> (n &lt; <span class="number">3</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 左侧最小值</span></span><br><span class="line">        <span class="type">int</span> left_min = nums[<span class="number">0</span>];</span><br><span class="line">        <span class="comment">// 右侧所有元素</span></span><br><span class="line">        multiset&lt;<span class="type">int</span>&gt; right_all;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">2</span>; k &lt; n; ++k) &#123;</span><br><span class="line">            right_all.<span class="built_in">insert</span>(nums[k]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt; n - <span class="number">1</span>; ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (left_min &lt; nums[j]) &#123;</span><br><span class="line">                <span class="keyword">auto</span> it = right_all.<span class="built_in">upper_bound</span>(left_min);</span><br><span class="line">                <span class="keyword">if</span> (it != right_all.<span class="built_in">end</span>() &amp;&amp; *it &lt; nums[j]) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            left_min = <span class="built_in">min</span>(left_min, nums[j]);</span><br><span class="line">            right_all.<span class="built_in">erase</span>(right_all.<span class="built_in">find</span>(nums[j + <span class="number">1</span>]));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>Title:</span><a href="/2021/03/13/Chapter%203%20Stack%E7%9A%84%E5%89%AF%E6%9C%AC/">Chapter 3 Stack</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage"></a></p>
+        <p><span>Created:</span>2021-03-13, 10:48:58</p>
+        <p><span>Updated:</span>2022-02-28, 13:02:14</p>
+        <p>
+            <span>Full URL:</span><a class="post-url" href="/2021/03/13/Chapter%203%20Stack%E7%9A%84%E5%89%AF%E6%9C%AC/" title="Chapter 3 Stack">http://example.com/2021/03/13/Chapter%203%20Stack%E7%9A%84%E5%89%AF%E6%9C%AC/</a>
+            <span class="copy-path" data-clipboard-text="From http://example.com/2021/03/13/Chapter%203%20Stack%E7%9A%84%E5%89%AF%E6%9C%AC/　　By " title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2021/03/13/Chapter%204%20Greedy%E7%9A%84%E5%89%AF%E6%9C%AC/">
+                    Chapter 4 Greedy
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2021/03/13/Chapter%202%20Dynamic%20Programming/">
+                    Chapter 2 Dynamic Programming
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#84-%E6%9F%B1%E7%8A%B6%E5%9B%BE%E4%B8%AD%E6%9C%80%E5%A4%A7%E7%9A%84%E7%9F%A9%E5%BD%A2%E3%80%8CHard%E3%80%8D"><span class="toc-number">1.</span> <span class="toc-text">84. 柱状图中最大的矩形「Hard」</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#503-%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%9B%B4%E5%A4%A7%E5%85%83%E7%B4%A0-II%E3%80%8CMedium%E3%80%8D"><span class="toc-number">2.</span> <span class="toc-text">503. 下一个更大元素 II「Medium」</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#224-%E5%9F%BA%E6%9C%AC%E8%AE%A1%E7%AE%97%E5%99%A8"><span class="toc-number">3.</span> <span class="toc-text">224. 基本计算器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#331-%E9%AA%8C%E8%AF%81%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E5%BA%8F%E5%88%97%E5%8C%96%E3%80%8CMedium%E3%80%8D"><span class="toc-number">4.</span> <span class="toc-text">331. 验证二叉树的前序序列化「Medium」</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#456-132-%E6%A8%A1%E5%BC%8F%E3%80%8CMedium%E3%80%8D"><span class="toc-number">5.</span> <span class="toc-text">456. 132 模式「Medium」</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+
+    <script>
+        yiliaConfig.toc = ["Hide", "Show", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Chapter 3 Stack　| You got what you paid for.　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2021/03/13/Chapter%204%20Greedy%E7%9A%84%E5%89%AF%E6%9C%AC/" title="Pre: Chapter 4 Greedy">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2021/03/13/Chapter%202%20Dynamic%20Programming/" title="Next: Chapter 2 Dynamic Programming">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2022/02/28/%E4%BD%BF%E7%94%A8%20Hexo%20%E9%83%A8%E7%BD%B2%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">使用 Hexo 部署个人博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/04/07/Chapter%208%20Binary%20Search%E7%9A%84%E5%89%AF%E6%9C%AC/">Chapter 8 Binary Search</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/16/Chapter%207%20Backtrack%E7%9A%84%E5%89%AF%E6%9C%AC/">Chapter 7 Backtrack</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/13/Chapter%20End%20Trivial%20Knowledge%E7%9A%84%E5%89%AF%E6%9C%AC/">Chapter End Trivial Knowledge</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/13/Chapter%206%20Bit%E7%9A%84%E5%89%AF%E6%9C%AC/">Chapter 6 Bit</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/13/Chapter%205%20Tree%E7%9A%84%E5%89%AF%E6%9C%AC/">Chapter 5 Tree</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/13/Chapter%204%20Greedy%E7%9A%84%E5%89%AF%E6%9C%AC/">Chapter 4 Greedy</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/13/Chapter%203%20Stack%E7%9A%84%E5%89%AF%E6%9C%AC/">Chapter 3 Stack</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/13/Chapter%202%20Dynamic%20Programming/">Chapter 2 Dynamic Programming</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/03/13/Chapter%201%20Sliding%20Window/">Chapter 1 Sliding Window</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2022 wanglei
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="Site Visitors"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="Page Hits"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
