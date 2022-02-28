@@ -14,17 +14,39 @@
 <meta name="author" content="wanglei" />
 
 
-    
-    
 
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="You got what you paid for.">
-<meta property="og:url" content="http://example.com/index.html">
+<meta name="description" content="Chapter 1 算法时间复杂度总结![4501612335956_.pic_hd](&#x2F;Users&#x2F;wanglei&#x2F;Library&#x2F;Containers&#x2F;com.tencent.xinWeChat&#x2F;Data&#x2F;Library&#x2F;Application Support&#x2F;com.tencent.xinWeChat&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="algorithm">
+<meta property="og:url" content="http://example.com/2021/02/03/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E7%9A%84%E5%89%AF%E6%9C%AC/index.html">
 <meta property="og:site_name" content="You got what you paid for.">
+<meta property="og:description" content="Chapter 1 算法时间复杂度总结![4501612335956_.pic_hd](&#x2F;Users&#x2F;wanglei&#x2F;Library&#x2F;Containers&#x2F;com.tencent.xinWeChat&#x2F;Data&#x2F;Library&#x2F;Application Support&#x2F;com.tencent.xinWeChat&amp;">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/10/22/rainwatertrap.png">
+<meta property="og:image" content="https://pic.leetcode-cn.com/1612775858-VWbhYR-image.png">
+<meta property="og:image" content="https://pic.leetcode-cn.com/1612776085-sZFGqE-image.png">
+<meta property="og:image" content="http://example.com/Users/wanglei/Library/Application%20Support/typora-user-images/image-20210206201135253.png">
+<meta property="og:image" content="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/10/12/histogram.png">
+<meta property="og:image" content="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/10/12/histogram_area.png">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2020/10/13/exx1.jpg">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2020/10/13/exx2.jpg">
+<meta property="og:image" content="https://pic.leetcode-cn.com/1611415418-aCzGJI-Picture2.png">
+<meta property="og:image" content="https://pic.leetcode-cn.com/1603022900-GNKGMP-Picture2.png">
+<meta property="og:image" content="https://pic.leetcode-cn.com/1603022900-qIFpAR-Picture4.png">
+<meta property="og:image" content="https://pic.leetcode-cn.com/1603022900-hnUxBz-Picture5.png">
+<meta property="og:image" content="https://pic.leetcode-cn.com/9716b1a1ead21824b8216c7d54910bee4d838c011581f4e3d82a14f71cb392a1-Picture1.png">
+<meta property="og:image" content="https://pic.leetcode-cn.com/1602217324-sOasmH-image.png">
+<meta property="og:image" content="https://pic.leetcode-cn.com/1602299482-BVMPja-image.png">
+<meta property="og:image" content="https://pic.leetcode-cn.com/1602300117-NttWzH-image.png">
+<meta property="og:image" content="https://pic.leetcode-cn.com/1602300140-vIBCEO-image.png">
+<meta property="og:image" content="https://pic.leetcode-cn.com/1602300159-BfbnMh-image.png">
+<meta property="og:image" content="https://pic.leetcode-cn.com/1602300189-petJhi-image.png">
+<meta property="og:image" content="https://pic.leetcode-cn.com/1602300201-yGrJKN-image.png">
+<meta property="article:published_time" content="2021-02-03T06:51:04.949Z">
+<meta property="article:modified_time" content="2022-02-28T13:35:11.740Z">
 <meta property="article:author" content="wanglei">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/10/22/rainwatertrap.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -54,13 +76,11 @@
 
 
 
-    <style> .article { opacity: 0;} </style>
-
 
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>You got what you paid for.</title>
+<title>algorithm | You got what you paid for.</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -69,8 +89,8 @@
     var yiliaConfig = {
         fancybox: true,
         animate: true,
-        isHome: true,
-        isPost: false,
+        isHome: false,
+        isPost: true,
         isArchive: false,
         isTag: false,
         isCategory: false,
@@ -260,77 +280,7 @@
     </div>
     <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
 </nav>
-      <div class="body-wrap">
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2022/02/28/hello-world/" class="article-date">
-      <time datetime="2022-02-28T13:20:29.346Z" itemprop="datePublished">2022-02-28</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/02/28/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-算法分析的副本" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-算法分析的副本" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2021/02/03/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E7%9A%84%E5%89%AF%E6%9C%AC/" class="article-date">
@@ -348,12 +298,19 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/02/03/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E7%9A%84%E5%89%AF%E6%9C%AC/">algorithm</a>
+    <h1 class="article-title" itemprop="name">
+      algorithm
     </h1>
   
 
       </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
       
     
     <div class="article-entry" itemprop="articleBody">
@@ -1025,19 +982,85 @@
       
     </div>
     
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
   </div>
+  
+    
+    <div class="copyright">
+        <p><span>Title:</span><a href="/2021/02/03/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E7%9A%84%E5%89%AF%E6%9C%AC/">algorithm</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage"></a></p>
+        <p><span>Created:</span>2021-02-03, 14:51:04</p>
+        <p><span>Updated:</span>2022-02-28, 21:35:11</p>
+        <p>
+            <span>Full URL:</span><a class="post-url" href="/2021/02/03/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E7%9A%84%E5%89%AF%E6%9C%AC/" title="algorithm">http://example.com/2021/02/03/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E7%9A%84%E5%89%AF%E6%9C%AC/</a>
+            <span class="copy-path" data-clipboard-text="From http://example.com/2021/02/03/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E7%9A%84%E5%89%AF%E6%9C%AC/　　By " title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2022/02/28/hello-world/">
+                    Hello World
+                </a>
+            </div>
+        
+        
+    </nav>
+
   
 </article>
 
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Chapter-1-%E7%AE%97%E6%B3%95%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E6%80%BB%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text">Chapter 1 算法时间复杂度总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Chapter-2-%E5%8F%8C%E6%8C%87%E9%92%88-amp-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3"><span class="toc-number">2.</span> <span class="toc-text">Chapter 2 双指针 &amp; 滑动窗口</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#424-%E6%9B%BF%E6%8D%A2%E5%90%8E%E7%9A%84%E6%9C%80%E9%95%BF%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E3%80%8CMedium%E3%80%8D"><span class="toc-number">2.1.</span> <span class="toc-text">424. 替换后的最长重复字符「Medium」</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1423-%E5%8F%AF%E8%8E%B7%E5%BE%97%E7%9A%84%E6%9C%80%E5%A4%A7%E7%82%B9%E6%95%B0%E3%80%8CMedium%E3%80%8D"><span class="toc-number">2.2.</span> <span class="toc-text">1423. 可获得的最大点数「Medium」</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#42-%E6%8E%A5%E9%9B%A8%E6%B0%B4%E3%80%8CHard%E3%80%8D"><span class="toc-number">2.3.</span> <span class="toc-text">42. 接雨水「Hard」</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#76-%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2%E3%80%8CHard%E3%80%8D"><span class="toc-number">2.4.</span> <span class="toc-text">76. 最小覆盖子串「Hard」</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#992-K-%E4%B8%AA%E4%B8%8D%E5%90%8C%E6%95%B4%E6%95%B0%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84%E3%80%8CHard%E3%80%8D"><span class="toc-number">2.5.</span> <span class="toc-text">992. K 个不同整数的子数组「Hard」</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#995-K-%E8%BF%9E%E7%BB%AD%E4%BD%8D%E7%9A%84%E6%9C%80%E5%B0%8F%E7%BF%BB%E8%BD%AC%E6%AC%A1%E6%95%B0%E3%80%8CHard%E3%80%8D"><span class="toc-number">2.6.</span> <span class="toc-text">995. K 连续位的最小翻转次数「Hard」</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Chapter-2-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="toc-number">3.</span> <span class="toc-text">Chapter 2 动态规划</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2%E3%80%8CMedium%E3%80%8D"><span class="toc-number">3.1.</span> <span class="toc-text">5. 最长回文子串「Medium」</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#72-%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB%E3%80%8CHard%E3%80%8D"><span class="toc-number">3.2.</span> <span class="toc-text">72. 编辑距离「Hard」</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#338-%E6%AF%94%E7%89%B9%E4%BD%8D%E8%AE%A1%E6%95%B0%E3%80%8CMedium%E3%80%8D"><span class="toc-number">3.3.</span> <span class="toc-text">338. 比特位计数「Medium」</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#132-%E5%88%86%E5%89%B2%E5%9B%9E%E6%96%87%E4%B8%B2-II%E3%80%8CHard%E3%80%8D"><span class="toc-number">3.4.</span> <span class="toc-text">132. 分割回文串 II「Hard」</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Chapter-3-%E6%A0%88"><span class="toc-number">4.</span> <span class="toc-text">Chapter 3 栈</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#84-%E6%9F%B1%E7%8A%B6%E5%9B%BE%E4%B8%AD%E6%9C%80%E5%A4%A7%E7%9A%84%E7%9F%A9%E5%BD%A2%E3%80%8CHard%E3%80%8D"><span class="toc-number">4.1.</span> <span class="toc-text">84. 柱状图中最大的矩形「Hard」</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#503-%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%9B%B4%E5%A4%A7%E5%85%83%E7%B4%A0-II%E3%80%8CMedium%E3%80%8D"><span class="toc-number">4.2.</span> <span class="toc-text">503. 下一个更大元素 II「Medium」</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#224-%E5%9F%BA%E6%9C%AC%E8%AE%A1%E7%AE%97%E5%99%A8"><span class="toc-number">4.3.</span> <span class="toc-text">224. 基本计算器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Chapter-4-%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95"><span class="toc-number">5.</span> <span class="toc-text">Chapter 4 贪心算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1749-%E4%BB%BB%E6%84%8F%E5%AD%90%E6%95%B0%E7%BB%84%E5%92%8C%E7%9A%84%E7%BB%9D%E5%AF%B9%E5%80%BC%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC%E3%80%8CMedium%E3%80%8D"><span class="toc-number">5.1.</span> <span class="toc-text">1749. 任意子数组和的绝对值的最大值「Medium」</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Chapter-5-%F0%9F%8C%B2"><span class="toc-number">6.</span> <span class="toc-text">Chapter 5 🌲</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Preface"><span class="toc-number">6.1.</span> <span class="toc-text">Preface</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#124-%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E8%B7%AF%E5%BE%84%E5%92%8C%E3%80%8CHard%E3%80%8D"><span class="toc-number">6.2.</span> <span class="toc-text">124. 二叉树中的最大路径和「Hard」</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%91%E6%8C%87-Offer-26-%E6%A0%91%E7%9A%84%E5%AD%90%E7%BB%93%E6%9E%84%E3%80%8CMedium%E3%80%8D"><span class="toc-number">6.3.</span> <span class="toc-text">剑指 Offer 26. 树的子结构「Medium」</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#331-%E9%AA%8C%E8%AF%81%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E5%BA%8F%E5%88%97%E5%8C%96%E3%80%8CMedium%E3%80%8D"><span class="toc-number">6.4.</span> <span class="toc-text">331. 验证二叉树的前序序列化「Medium」</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Chapter-6-%E4%BD%8D%E8%BF%90%E7%AE%97"><span class="toc-number">7.</span> <span class="toc-text">Chapter 6 位运算</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1680-%E8%BF%9E%E6%8E%A5%E8%BF%9E%E7%BB%AD%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%95%B0%E5%AD%97%E3%80%8CMedium%E3%80%8D"><span class="toc-number">7.1.</span> <span class="toc-text">1680. 连接连续二进制数字「Medium」</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%91%E6%8C%87-Offer-56-I-%E6%95%B0%E7%BB%84%E4%B8%AD%E6%95%B0%E5%AD%97%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0%E3%80%8CMedium%E3%80%8D"><span class="toc-number">7.2.</span> <span class="toc-text">剑指 Offer 56 - I. 数组中数字出现的次数「Medium」</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%91%E6%8C%87-Offer-56-II-%E6%95%B0%E7%BB%84%E4%B8%AD%E6%95%B0%E5%AD%97%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0-II%E3%80%8CMedium%E3%80%8D"><span class="toc-number">7.3.</span> <span class="toc-text">剑指 Offer 56 - II. 数组中数字出现的次数 II「Medium」</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%91%E6%8C%87-Offer-65-%E4%B8%8D%E7%94%A8%E5%8A%A0%E5%87%8F%E4%B9%98%E9%99%A4%E5%81%9A%E5%8A%A0%E6%B3%95%E3%80%8CEasy%E3%80%8D"><span class="toc-number">7.4.</span> <span class="toc-text">剑指 Offer 65. 不用加减乘除做加法「Easy」</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Chapter-7-%E6%8E%92%E5%BA%8F"><span class="toc-number">8.</span> <span class="toc-text">Chapter 7 排序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F"><span class="toc-number">8.1.</span> <span class="toc-text">快速排序</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Chapter-End-Trivial-Knowledge"><span class="toc-number">9.</span> <span class="toc-text">Chapter End Trivial Knowledge</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#204-%E8%AE%A1%E6%95%B0%E8%B4%A8%E6%95%B0%E3%80%8CEasy%E3%80%8D"><span class="toc-number">9.1.</span> <span class="toc-text">204. 计数质数「Easy」</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Appendix"><span class="toc-number">10.</span> <span class="toc-text">Appendix</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+
+    <script>
+        yiliaConfig.toc = ["Hide", "Show", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"algorithm　| You got what you paid for.　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
 
 
 
@@ -1045,9 +1068,33 @@
 
 
 
+    
 
-  
-  
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2022/02/28/hello-world/" title="Pre: Hello World">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/" title="Back to Homepage"><i class="fa fa-home"></i></a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2022/02/28/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/02/03/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E7%9A%84%E5%89%AF%E6%9C%AC/">algorithm</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
